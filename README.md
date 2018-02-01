@@ -172,7 +172,77 @@ As these permissions are automatically merged into your androidmanifest.xml, you
 
 
 ## What kinds of data does the SDK collect
-With the default configuration, the SDK will collect information about nearby wifis, geo location and BLE devices (iBeacon, Eddystone and RawBle). These data comes with information about the device, battery levels, etc, described later.
+With the default configuration, the SDK will collect information about nearby wifis, geo location and BLE devices (iBeacon, Eddystone and RawBle). These data comes with information about the device, battery levels, etc.
+
+The following is an example of an geo location event. All of these data are sent with each event regardless of type. So when an WIFI event is reported, so are device info and geo location info. 
+
+```json
+{
+"connection": {
+        "bssid": "10:3a:cb:f5:00:2a",
+        "cellType": "4G",
+        "level": -59,
+        "mcc": 242,
+        "mnc": 12,
+        "ssid": "prox-guest",
+        "timestamp": "2018-02-01T11:49:31+00:00",
+        "type": "WIFI"
+      },
+      "device": {
+        "activity": true,
+        "adid": "1e90927e-8e19-1348-b7e0-f36732db49bc",
+        "adidLimited": false,
+        "appId": "com.prox.proxdemo",
+        "appVersion": "1.1",
+        "location": "always",
+        "manufacturer": "Sony",
+        "mcc": 242,
+        "mnc": 12,
+        "model": "F8331",
+        "os": "android",
+        "osSdkVersion": "24",
+        "osVersion": "7.0",
+        "sdkVersion": "1.0",
+        "timestamp": "2018-02-01T11:49:31+00:00",
+        "trackingEnabled": true
+      },
+      "event": {
+        "altitude": 23.2,
+        "bearing": 0,
+        "hacc": 21.9,
+        "lat": 59.9135209,
+        "lon": 10.7478901,
+        "provider": "SNAPSHOT",
+        "speed": 0,
+        "timestamp": "2018-02-01T11:49:31+00:00",
+        "updated": "2018-02-01T11:48:31+00:00",
+        "vacc": 12.5,
+        "type": "LOCATION"
+      },
+      "location": {
+        "altitude": 0,
+        "bearing": 0,
+        "hacc": 21.9,
+        "lat": 59.9135209,
+        "lon": 10.7478901,
+        "provider": "SNAPSHOT",
+        "speed": 0,
+        "timestamp": "2018-02-01T11:49:31+00:00",
+        "updated": "2018-02-01T11:48:31+00:00",
+        "vacc": null,
+        "type": "LOCATION"
+      },
+      "state": {
+        "activity": "Still",
+        "battery": 1,
+        "charging": false,
+        "deviceInfo": "1.1, , Sony, F8331, 24",
+        "foreground": false,
+        "powersave": false,
+        "timestamp": "2018-02-01T11:49:31+00:00"
+      }
+}
+```
 
 ## How does it work?
 The SDK relies on Google Awareness API, and not without reason. It's using the API to look at the current state of the device, and make sure scanning is triggered less frequently if e.g. the device is still and not moving. It's also using the Awareness API to trigger scanning on intervals and when the device has moved a certain threshold. All scanning intervals and movement thresholds are configured from the cloud.
