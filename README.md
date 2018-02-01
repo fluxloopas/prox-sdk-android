@@ -20,7 +20,7 @@ Add the following line to your app's `build.gradle`:
 ```groovy
 repositories {
     maven {
-        url "https://ganymede.blob.storage.net/maven/"
+        url "https://proxmaven.blob.core.windows.net/artifacts/"
     }
 }
 ```
@@ -28,7 +28,7 @@ repositories {
 Add the below line to your app's `build.gradle` inside the `dependencies` section:
 
 ```groovy
-compile 'com.prox:sdk:1.+'
+compile 'com.prox:sdk:1.0'
 ```
 
 ### Usage
